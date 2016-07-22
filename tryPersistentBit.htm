@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My test</title>
+</head>
+<body>
+
+    <span id="set">Set</span> <span id="clear">Clear</span> <span id="get">Get</span>
+
+    <p><span id="state"></span></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/js.cookie.js"></script>
+    <script type="text/javascript" src="js/persistentBit.js"></script>
+    <script type="text/javascript">
+        var bit = new createPersistentBitSetByDefault();
+
+        function updateState() {
+            $("#state").html(bit.get().toString());
+        }
+
+        updateState();
+
+        $("#set").click(function() {
+            bit.set();
+            console.log(bit.get());
+            updateState();
+        });
+        $("#clear").click(function() {
+            bit.clear();
+            console.log(bit.get());
+            updateState();
+        });
+    </script>
+</body>
+</html>
