@@ -1,21 +1,12 @@
 CONTENT = $("#content");
-DISCOVERY_COOKIE = 'isDiscovered';
 TIMER_COOKIE = 'timer';
 MAX_ELAPSED_TIME_IN_SECONDS = 3;
 
 
-function getEpochTimeNowInMilliseconds() {
-    return (new Date).getTime();
-}
-
-
 // Need to do such that content is not displayed onload, then maybe display when js executes
 function onload() {
-    if (discoveredBit.get()) {
-        hideTooltip();
-    }
-    else if (timer.hasStarted() && timer.getElapsedInSeconds() > MAX_ELAPSED_TIME_IN_SECONDS) {
-        hideTooltip();
+    if (timer.hasStarted() && timer.getElapsedInSeconds() > MAX_ELAPSED_TIME_IN_SECONDS) {
+        tooltipPersistentState.setToClosed();
     }
     else {
         timer.start();
@@ -30,9 +21,8 @@ function hideTooltip() {
     CONTENT.css('display', 'none');
 }
 
-function hideTooltipForever() {
-    hideTooltip();
-    discoveredBit.set();
+function getEpochTimeNowInMilliseconds() {
+    return (new Date).getTime();
 }
 
 timer = {
@@ -55,16 +45,30 @@ timer = {
     }
 }
 
-discoveredBit = {
-    'set': function() {
-        Cookies.set(DISCOVERY_COOKIE, null);
+tooltipPersistentState = {
+    'cookieStr': 'isDiscovered',
+
+    'onload': function() {
+        var cookieExists = Cookies.get(this.cookieStr) != null;
+        if (cookieExists) {
+            hideTooltip();
+        }
+        else {
+            showTooltip();
+        }
     },
 
-    'get': function() {
-        return Cookies.get(DISCOVERY_COOKIE) != null;
+    'setToClosed': function() {
+        hideTooltip();
+        Cookies.set(this.cookieStr, null);
+    },
+
+    'setToOpen': function() {
+        showTooltip();
     }
 }
+tooltipPersistentState.onload();
 
-$("#content").click(hideTooltipForever);
+$("#content").click(tooltipPersistentState.setToClosed);
 
 console.log('End of js');
