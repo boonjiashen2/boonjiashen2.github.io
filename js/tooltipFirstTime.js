@@ -60,6 +60,8 @@ var persistentDisplayState = {
 
     // The following method needs to be called once the object is declared
     'onload': function() {
+        console.log('in persistentDisplayState.onload');
+        console.log(this);
         if (this.isDisplayed.get()) {
             showTooltip();
         }
