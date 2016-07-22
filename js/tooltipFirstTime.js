@@ -41,8 +41,6 @@ function createTimer() {
     }
 }
 
-timer = new createTimer();
-
 function createPersistentBitSetByDefault() {
     this.cookieStr = 'persistentBitSetByDefault';
     this.clear = function() {
@@ -57,11 +55,11 @@ function createPersistentBitSetByDefault() {
     };
 }
 
-var persistentDisplayState = {
-    'isDisplayed': new createPersistentBitSetByDefault(),
+function createPersistentDisplayState() {
+    this.isDisplayed = new createPersistentBitSetByDefault();
 
     // The following method needs to be called once the object is declared
-    'onload': function() {
+    this.onload = function() {
         console.log('in persistentDisplayState.onload');
         console.log(this);
         if (this.isDisplayed.get()) {
@@ -70,18 +68,21 @@ var persistentDisplayState = {
         else {
             hideTooltip();
         }
-    },
+    };
 
-    'setToHide': function() {
+    this.setToHide = function() {
         hideTooltip();
         this.isDisplayed.clear();
-    },
+    };
 
-    'setToShow': function() {
+    this.setToShow = function() {
         showTooltip();
         this.isDisplayed.set();
-    }
+    };
 }
+
+timer = new createTimer();
+persistentDisplayState = new createPersistentDisplayState();
 persistentDisplayState.onload();
 
 $("#content").click(persistentDisplayState.setToHide);
