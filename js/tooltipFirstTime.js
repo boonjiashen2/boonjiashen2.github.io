@@ -30,7 +30,7 @@ var timer = {
         Cookies.set(this.cookieStr, getEpochTimeNowInMilliseconds());
     },
     'getElapsedInSeconds': function() {
-        if (!this.hasTimerStarted()) {
+        if (!this.hasStarted()) {
             return null;
         }
         var elapsedTimeInMilliseconds = (getEpochTimeNowInMilliseconds() - Cookies.get(this.cookieStr));
@@ -81,6 +81,6 @@ var persistentDisplayState = {
 persistentDisplayState.onload();
 
 $("#content").click(persistentDisplayState.setToHide);
-
+onload();
 
 console.log('End of js');
