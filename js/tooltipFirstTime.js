@@ -3,6 +3,7 @@ DISCOVERY_COOKIE = 'isDiscovered';
 TIMER_COOKIE = 'timer';
 MAX_ELAPSED_TIME_IN_SECONDS = 3;
 
+// Need to do such that content is not displayed onload, then maybe display when js executes
 function onload() {
     if (getDiscoveredBit()) {
         hideTooltip();
@@ -13,6 +14,10 @@ function onload() {
     else {
         startTimer();
     }
+}
+
+function showTooltip() {
+    CONTENT.css('display', 'block');
 }
 
 function hideTooltip() {
