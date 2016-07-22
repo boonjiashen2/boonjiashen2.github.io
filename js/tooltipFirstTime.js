@@ -41,14 +41,12 @@ function createTimer() {
     }
 }
 
-function createPersistentDisplayState() {
-    this.isDisplayed = new createPersistentBitSetByDefault();
+function createPersistentDisplayState(persistentDisplayBit) {
+    this.isDisplayed = persistentDisplayBit;
 
     // The following method needs to be called once the object is declared
     this.onload = function() {
-        console.log('in persistentDisplayState.onload');
-        console.log(this);
-        if (this.isDisplayed.get()) {
+        if (persistentDisplayBit.get()) {
             showTooltip();
         }
         else {
@@ -58,17 +56,18 @@ function createPersistentDisplayState() {
 
     this.setToHide = function() {
         hideTooltip();
-        this.isDisplayed.clear();
+        persistentDisplayBit.clear();
     };
 
     this.setToShow = function() {
         showTooltip();
-        this.isDisplayed.set();
+        persistentDisplayBit.set();
     };
 }
 
 timer = new createTimer();
-persistentDisplayState = new createPersistentDisplayState();
+persistentDisplayBit = new createPersistentBitSetByDefault();
+persistentDisplayState = new createPersistentDisplayState(persistentDisplayBit);
 persistentDisplayState.onload();
 
 $("#content").click(persistentDisplayState.setToHide);
