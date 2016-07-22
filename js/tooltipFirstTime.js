@@ -42,7 +42,7 @@ var timer = {
 }
 
 var persistentBitSetByDefault = {
-    'cookieStr': 'anyString',
+    'cookieStr': 'persistentBitSetByDefault',
     'clear': function() {
         Cookies.set(this.cookieStr, null);
     },
