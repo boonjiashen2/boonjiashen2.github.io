@@ -24,39 +24,41 @@ function getEpochTimeNowInMilliseconds() {
     return (new Date).getTime();
 }
 
-var timer = {
-    'cookieStr': 'timer',
-    'start': function() {
+function createTimer() {
+    this.cookieStr = 'timer';
+    this.start = function() {
         Cookies.set(this.cookieStr, getEpochTimeNowInMilliseconds());
-    },
-    'getElapsedInSeconds': function() {
+    };
+    this.getElapsedInSeconds = function() {
         if (!this.hasStarted()) {
             return null;
         }
         var elapsedTimeInMilliseconds = (getEpochTimeNowInMilliseconds() - Cookies.get(this.cookieStr));
         return elapsedTimeInMilliseconds / 1000;
-    },
-    'hasStarted': function() {
+    };
+    this.hasStarted = function() {
         return Cookies.get(this.cookieStr) != null;
     }
 }
 
-var persistentBitSetByDefault = {
-    'cookieStr': 'persistentBitSetByDefault',
-    'clear': function() {
+timer = new createTimer();
+
+function createPersistentBitSetByDefault() {
+    this.cookieStr = 'persistentBitSetByDefault';
+    this.clear = function() {
         Cookies.set(this.cookieStr, null);
-    },
-    'get': function() {
+    };
+    this.get = function() {
         var cookieExists = Cookies.get(this.cookieStr) != null;
         return !cookieExists;
-    },
-    'set': function() {
+    };
+    this.set = function() {
         Cookies.remove(this.cookieStr);
-    }
+    };
 }
 
 var persistentDisplayState = {
-    'isDisplayed': persistentBitSetByDefault,
+    'isDisplayed': new createPersistentBitSetByDefault(),
 
     // The following method needs to be called once the object is declared
     'onload': function() {
