@@ -1,12 +1,11 @@
 CONTENT = $("#content");
-TIMER_COOKIE = 'timer';
 MAX_ELAPSED_TIME_IN_SECONDS = 3;
 
 
 // Need to do such that content is not displayed onload, then maybe display when js executes
 function onload() {
     if (timer.hasStarted() && timer.getElapsedInSeconds() > MAX_ELAPSED_TIME_IN_SECONDS) {
-        tooltipPersistentState.setToClosed();
+        persistentDisplayState.setToHide();
     }
     else {
         timer.start();
@@ -25,50 +24,63 @@ function getEpochTimeNowInMilliseconds() {
     return (new Date).getTime();
 }
 
-timer = {
+var timer = {
+    'cookieStr': 'timer',
     'start': function() {
-        Cookies.set(TIMER_COOKIE, getEpochTimeNowInMilliseconds());
+        Cookies.set(this.cookieStr, getEpochTimeNowInMilliseconds());
     },
-
     'getElapsedInSeconds': function() {
         if (!this.hasTimerStarted()) {
             return null;
         }
-        else {
-            var elapsedTimeInMilliseconds = (getEpochTimeNowInMilliseconds() - Cookies.get(TIMER_COOKIE));
-            return elapsedTimeInMilliseconds / 1000;
-        }
+        var elapsedTimeInMilliseconds = (getEpochTimeNowInMilliseconds() - Cookies.get(this.cookieStr));
+        return elapsedTimeInMilliseconds / 1000;
     },
-
     'hasStarted': function() {
-        return Cookies.get(TIMER_COOKIE) != null;
+        return Cookies.get(this.cookieStr) != null;
     }
 }
 
-tooltipPersistentState = {
-    'cookieStr': 'isDiscovered',
-
-    'onload': function() {
-        var cookieExists = Cookies.get(this.cookieStr) != null;
-        if (cookieExists) {
-            hideTooltip();
-        }
-        else {
-            showTooltip();
-        }
-    },
-
-    'setToClosed': function() {
-        hideTooltip();
+var persistentBitSetByDefault = {
+    'cookieStr': 'anyString',
+    'clear': function() {
         Cookies.set(this.cookieStr, null);
     },
-
-    'setToOpen': function() {
-        showTooltip();
+    'get': function() {
+        var cookieExists = Cookies.get(this.cookieStr) != null;
+        return !cookieExists;
+    },
+    'set': function() {
+        Cookies.remove(this.cookieStr);
     }
 }
-tooltipPersistentState.onload();
 
-$("#content").click(tooltipPersistentState.setToClosed);
+var persistentDisplayState = {
+    'isDisplayed': persistentBitSetByDefault,
+
+    // The following method needs to be called once the object is declared
+    'onload': function() {
+        if (this.isDisplayed.get()) {
+            showTooltip();
+        }
+        else {
+            hideTooltip();
+        }
+    },
+
+    'setToHide': function() {
+        hideTooltip();
+        this.isDisplayed.clear();
+    },
+
+    'setToShow': function() {
+        showTooltip();
+        this.isDisplayed.set();
+    }
+}
+persistentDisplayState.onload();
+
+$("#content").click(persistentDisplayState.setToHide);
+
 
 console.log('End of js');
