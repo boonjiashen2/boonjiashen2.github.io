@@ -2,11 +2,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My test</title>
+    <title>Tests persistent</title>
 </head>
 <body>
 
-    <span id="set">Set</span> <span id="clear">Clear</span> <span id="get">Get</span>
+    <a href="#" id="set">Set</a href="#"> <a href="#" id="clear">Clear</a>
 
     <p><span id="state"></span></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -16,7 +16,7 @@
         var bit = new createPersistentBitSetByDefault();
 
         function updateState() {
-            $("#state").html(bit.get().toString());
+            $("#state").html('State = ' + bit.get().toString());
         }
 
         updateState();
