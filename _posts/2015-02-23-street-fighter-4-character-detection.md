@@ -37,7 +37,7 @@ _Rapidly changing poses_. This is Akuma's standing position to crouching hard ki
         <br />Top row from left to right - demon flip to punch, landing after an air fireball, hurrican kick, standing hard kick, neutral position.
         <br />Bottom row from left to right - forward jump, getting hit from the air, getting swept, crouching light kick.
 
-![poses]({{ site.baseurl }}/assets/varying_color.png)
+![varying color]({{ site.baseurl }}/assets/varying_color.png)
 <i>Variance in color</i>.<b>&nbsp;</b>From left to right - neutral position, just before releasing red fireball, focus-attack dash cancel, EX air fireball
 
 # Training data
