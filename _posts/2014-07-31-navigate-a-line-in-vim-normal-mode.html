@@ -1,0 +1,45 @@
+---
+layout: post
+title: Navigate a line in Vim Normal mode
+date: 2014-07-31 15:13:00.000000000 -07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+  blogger_blog: blog.jiashen.me
+  blogger_author: Jia Shen Boon
+  blogger_406b70948e1d03d2554041dda5a8b48e_permalink: '9077090357830589739'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1463334418;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:14;}i:1;a:1:{s:2:"id";i:8;}i:2;a:1:{s:2:"id";i:27;}}}}
+  original_post_id: '13'
+  _wp_old_slug: '13'
+author:
+  login: boonjiashen
+  email: jiashen@gmail.com
+  display_name: jiashen
+  first_name: ''
+  last_name: ''
+---
+<p>Unfortunately, I won't be writing on my robotics pet project for a while, because I'll be heading over to the University of Wisconsin-Madison for my Master's in Computer Science, and in preparation for the move I've dismantled TOHNKATSU. Ah well.</p>
+<p>Nevertheless, I'll be sharing some small tips about Vim today, which to be honest I feel is one of the few things I'm qualified to teach.</p>
+<p>Today's topic is on <b>navigating a line in Vim's Normal mode</b>. That's the mode that you enter when you hit <span style="font-family:Courier New, Courier, monospace;"></span>. Many of you probably know that <span style="font-family:Courier New, Courier, monospace;">/my_search_term</span> jumps forward to a search term, <span style="font-family:Courier New, Courier, monospace;">?my_search_term</span> is the equivalent in the backwards direction, <span style="font-family:Courier New, Courier, monospace;">14G</span> brings you to line 14, etc, but really, we spend a disproportionate amount of time just navigating a single line in Vim. That's why it's important and that's why we're talking about it today!</p>
+<p><b>Jump to a character</b><br /><b><br /></b><span style="font-family:Courier New, Courier, monospace;">A bad brown fox jumps over my steely dan!</span><br /><span style="font-family:Courier New, Courier, monospace;">  ^   ^         ^       ^       ^</span><br /><span style="font-family:Courier New, Courier, monospace;">  2Fb Fb        cursor  fe      2fe</span>
+<div><b><span style="font-family:inherit;"><br /></span></b></div>
+<div>The command is <span style="font-family:Courier New, Courier, monospace;">f</span> to jump rightwards and <span style="font-family:Courier New, Courier, monospace;">F</span> to jump leftwards. As with many Vim commands, prepend a number <i>n</i> to execute the command <i>n</i> times, e.g. <span style="font-family:Courier New, Courier, monospace;">2f</span><span style="font-family:inherit;"> is equivalent to executing </span><span style="font-family:Courier New, Courier, monospace;">f</span><span style="font-family:inherit;"> twice. Super useful, especially for small edits in a word or a short phrase.</span></div>
+<div></div>
+<div><b><span style="font-family:inherit;">Jump before a character</span></b></div>
+<div>
+<div><span style="font-family:Courier New, Courier, monospace;"><br /></span></div>
+<div><span style="font-family:Courier New, Courier, monospace;">She's really fun to hang out with (if you know what I mean).</span></div>
+<div><span style="font-family:Courier New, Courier, monospace;">    ^                    ^                               ^</span><br /><span style="font-family:'Courier New', Courier, monospace;">    T'                   cursor                          t)</span></div>
+</div>
+<div></div>
+<div>This is pretty much the same as above, except the cursor jumps to the character just before your search character. The command is <span style="font-family:Courier New, Courier, monospace;">t</span> to jump rightwards and <span style="font-family:Courier New, Courier, monospace;">T</span> to jump leftwards. Maybe not as universally useful as <span style="font-family:Courier New, Courier, monospace;">f</span>/<span style="font-family:Courier New, Courier, monospace;">F</span>, but it's really handy if you're a programmer and there are all these mathematical operators (<span style="font-family:Courier New, Courier, monospace;">+-*/</span>) that you want to jump next to - not directly to, but next to.</div>
+<div></div>
+<div><b>Wrap up</b></div>
+<div></div>
+<div>Just like most commands in Vim, you'll almost certainly need to consciously incorporate these into your editing/programming habits, but it'll become second-nature soon enough. Remember to combine these with the standard commands like <span style="font-family:Courier New, Courier, monospace;">d</span> for delete and <span style="font-family:Courier New, Courier, monospace;">y</span> for yank, e.g. <span style="font-family:Courier New, Courier, monospace;">dfe</span> deletes all characters up to and including the next <span style="font-family:Courier New, Courier, monospace;">e</span>, and <span style="font-family:Courier New, Courier, monospace;">yt)</span> copies all characters up to but excluding the next closing bracket.</div>
+<div></div>
+<div>I'm sure these will be useful to you. Enjoy!</div>

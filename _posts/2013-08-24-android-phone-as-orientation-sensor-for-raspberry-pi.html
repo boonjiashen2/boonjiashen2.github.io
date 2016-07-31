@@ -1,0 +1,31 @@
+---
+layout: post
+title: Android phone as orientation sensor for Raspberry Pi
+date: 2013-08-24 15:06:00.000000000 -07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+  blogger_blog: blog.jiashen.me
+  blogger_author: Jia Shen Boon
+  blogger_406b70948e1d03d2554041dda5a8b48e_permalink: '6877126672877210769'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1464661276;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:27;}i:1;a:1:{s:2:"id";i:18;}i:2;a:1:{s:2:"id";i:16;}}}}
+  original_post_id: '28'
+  _wp_old_slug: '28'
+author:
+  login: boonjiashen
+  email: jiashen@gmail.com
+  display_name: jiashen
+  first_name: ''
+  last_name: ''
+---
+<p>A project that I've started working on for about a month, and one that I've wanted to do for about a year now, is to create an intelligent robot from scratch. By "from scratch", I mean from the component level of microcontrollers, motors, wires, etc. I'm not going to build my microcontroller or motor, for reasons that should become quite obvious once I start to describe my process. Incorporating appropriate sensors is pretty important part of robot development, and here, I'll be talking about how I got an Android phone to act as an orientation sensor for a <a href="http://www.raspberrypi.org/">Raspberry Pi</a>.</p>
+<p>The idea is quite simple: we get the Android phone to send the data of its <a href="http://en.wikipedia.org/wiki/Inertial_measurement_unit">inertial measurement unit</a> to the Raspberry Pi, and the Raspberry Pi will do all the calculations to figure out the three-axis orientation of the Android phone. If the phone and RPi are fixed to each other, then the orientation of the RPi is going to be the same as the phone's.</p>
+<p>To get the Android phone to send sensor data to the RPi, I found a very simple Android application called <a href="https://play.google.com/store/apps/details?id=org.zwiener.wimu&amp;hl=en">Wireless IMU</a>. It sends accelerometer, gyroscope and magnetometer data over UDP to one port of one IP address.</p>
+<p>To calculate the orientation of the phone on the RPi, we do simple vector calculations. This <a href="http://www.youtube.com/watch?v=C7JQ7Rpwn2k">Google talk by David Sach</a> gives a very good overview of the sensor suite of the phone, as well the operating principles of each of the sensors. In my program, I used the accelerometer data to calculate the direction of gravity w.r.t to the phone. I then used this vector and the magnetometer data to <a href="http://stackoverflow.com/questions/1055014/getting-magnetic-north-from-a-xyz-magnetometer-iphone-3-0">calculate North w.r.t the phone</a>. These two vectors then completely define the three-axis orientation of the phone.</p>
+<p>I wrote the program in Python, just because I'm comfortable with it.</p>
+<p>I think it's pretty cool to use the sensors of a phone for an external application such as robotics. For one thing you get to save on getting additional sensors. The downside is that you've got to have a local network wherever you're developing your robot - not an issue if you have a home network.</p>
+<p>After this, I want to make use of this sensory input to perform useful tasks. A simple one would be a wheeled robot that follows North. This is my immediate goal. I'm thinking it'll be straightforward. (famous last words)</p>

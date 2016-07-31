@@ -1,0 +1,138 @@
+---
+layout: post
+title: Stack Arduino Uno over Raspberry Pi
+date: 2014-06-07 06:51:00.000000000 -07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+  blogger_blog: blog.jiashen.me
+  blogger_author: Jia Shen Boon
+  blogger_406b70948e1d03d2554041dda5a8b48e_permalink: '7646586094343363632'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1464678228;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:16;}i:1;a:1:{s:2:"id";i:25;}i:2;a:1:{s:2:"id";i:27;}}}}
+  original_post_id: '15'
+  _wp_old_slug: '15'
+author:
+  login: boonjiashen
+  email: jiashen@gmail.com
+  display_name: jiashen
+  first_name: ''
+  last_name: ''
+---
+<div class="separator" style="clear:both;text-align:left;">If you're working on a system that involves both the Raspberry Pi and Arduino Uno, particularly a mobile one, you'll probably want to stack the two boards up vertically. It saves space and in turn, the wiring (arguably) becomes easier. I'll be describing my method for doing this.</div>
+<p><u>Ingredients</u><br />(M3 thread size for all)</p>
+<p><b>Base plate to Raspberry Pi</b>
+<ul>
+<li>2x male/female 6 mm metal spacer</li>
+<li>2x female/female 6 mm plastic spacer</li>
+<li>2x metal screw</li>
+<li>2x plastic screw</li>
+</ul>
+<div><b>Raspberry Pi to Arduino Uno</b></div>
+<div>
+<ul>
+<li>1x male/female 25 mm plastic spacer</li>
+<li>1x female/female 25 mm metal spacer</li>
+<li>1x male/female 15 mm metal spacer</li>
+<li>1x male/female 8 mm metal spacer</li>
+<li>2x hexagonal metal nut</li>
+<li>1x hexagonal plastic nut</li>
+<li>1x metal screw</li>
+<li>1x 3D printed piece [<a href="https://drive.google.com/file/d/0BzmL0UsxhScmVlVzVEhVTW5EVUE/edit?usp=sharing">STL file</a>]</li>
+</ul>
+</div>
+<p><u>Challenges</u><br />The main challenge relates to the mounting holes of the two boards - the holes of the Raspberry Pi are not aligned with the holes of the Arduino Uno. To solve this, we use a 3D-printed piece to get a spacer that has its two ends slightly offset (see below for details).</p>
+<p>The other challenge has to do with the RPi only having two mounting holes. So even if these holes <i>were</i> aligned with two from the Uno, we'll still only have two points of support. That's not ideal. We'll be using a plastic spacer that's secured to the Uno but <b>not secured</b> to the RPi, to get the third point of support.</p>
+<p><u>Recipe</u><br />1) <b>Secure four spacers on to the base plate. </b>(Scroll further down for details on the position of the spacers.) Here my base plate is the not-really-recommended Magician's Chassis. Whatever yours may be, you should have four mounting holes on it. You don't want the RPi to be wobbling around when you're wiring up.</p>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left:auto;margin-right:auto;text-align:center;">
+<tbody>
+<tr>
+<td style="text-align:center;"><a href="http://162.243.9.245/wp-content/uploads/2015/07/195c3-imag0409.jpg" style="margin-left:auto;margin-right:auto;"><img border="0" src="{{ site.baseurl }}/assets/195c3-imag0409.jpg" height="237" width="320" /></a></td>
+</tr>
+<tr>
+<td class="tr-caption" style="text-align:center;">Here's 2x 6mm plastic spacers, 2x 6mm metal spacers, and their respective screws.</td>
+</tr>
+</tbody>
+</table>
+<p>2) <b>Place the RPi over the base plate.</b> In practice, you'll probably be doing this step in tandem with the previous one, to make sure that the spacers are all aligned nicely.</p>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left:auto;margin-right:auto;text-align:center;">
+<tbody>
+<tr>
+<td style="text-align:center;"><a href="http://162.243.9.245/wp-content/uploads/2015/07/05567-imag0408edited.jpg" style="margin-left:auto;margin-right:auto;"><img border="0" src="{{ site.baseurl }}/assets/05567-imag0408edited.jpg" height="237" width="320" /></a></td>
+</tr>
+<tr>
+<td class="tr-caption" style="text-align:center;">The board rests on all four spacers but only the metal ones have mounting holes.</td>
+</tr>
+</tbody>
+</table>
+<p>3) <b>Screw spacers on to RPi.</b> Pretty straight-forward here. The top ends need to be aligned with the mounting holes of your Arduino Uno.</p>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left:auto;margin-right:auto;text-align:center;">
+<tbody>
+<tr>
+<td style="text-align:center;"><a href="http://162.243.9.245/wp-content/uploads/2015/07/f9059-imag0406edited.jpg" style="margin-left:auto;margin-right:auto;"><img border="0" src="{{ site.baseurl }}/assets/f9059-imag0406edited.jpg" height="237" width="320" /></a></td>
+</tr>
+<tr>
+<td class="tr-caption" style="text-align:center;">The plastic spacer is not secured, actually. It's just standing on the board.</td>
+</tr>
+</tbody>
+</table>
+<p>4) <b>Place Arduino Uno over RPi.</b> Again, the plastic spacer is <b>not </b>secured to the RPi. The two are just touching each other. The spacer only bears compressive load.</p>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left:auto;margin-right:auto;text-align:center;">
+<tbody>
+<tr>
+<td style="text-align:center;"><a href="http://162.243.9.245/wp-content/uploads/2015/07/486a9-imag0405edited.jpg" style="margin-left:auto;margin-right:auto;"><img border="0" src="{{ site.baseurl }}/assets/486a9-imag0405edited.jpg" height="237" width="320" /></a></td>
+</tr>
+<tr>
+<td class="tr-caption" style="text-align:center;">And we're done!</td>
+</tr>
+</tbody>
+</table>
+<p><u>Offset spacers</u><br />Here we take a closer look at the offset spacer that's in between the two boards. It consists of:
+<ul>
+<li>1x 3D-printed piece (I call it the cassette tape [<a href="http://en.wikipedia.org/wiki/Compact_Cassette">Wikipedia</a>])</li>
+<li>1x metal male/female 15 mm spacer</li>
+<li>1x metal male/female 8 mm spacer</li>
+<li>2x hex nut</li>
+</ul>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left:auto;margin-right:auto;text-align:center;">
+<tbody>
+<tr>
+<td style="text-align:center;"><a href="http://162.243.9.245/wp-content/uploads/2015/07/b6733-output.jpg" style="margin-left:auto;margin-right:auto;"><img border="0" src="{{ site.baseurl }}/assets/b6733-output.jpg" height="120" width="320" /></a></td>
+</tr>
+<tr>
+<td class="tr-caption" style="text-align:center;">Left: offset spacer<br />Right: 3D printed "cassette tape"</td>
+</tr>
+</tbody>
+</table>
+<div><u>Position of spacers below Raspberry Pi</u></div>
+<div>To provide good support for the Raspberry Pi, I used two plastic spacers in addition to two metal spacers. Just like the 25 mm plastic spacer, these two plastic spacers are also not screwed on to the RPi. They just bear compressive load.</div>
+<div></div>
+<div class="separator" style="clear:both;text-align:center;"></div>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left:auto;margin-right:auto;text-align:center;">
+<tbody>
+<tr>
+<td style="text-align:center;"><a href="http://162.243.9.245/wp-content/uploads/2015/07/75400-imag0411.jpg" style="margin-left:auto;margin-right:auto;"><img border="0" src="{{ site.baseurl }}/assets/75400-imag0411.jpg" height="237" width="320" /></a></td>
+</tr>
+<tr>
+<td class="tr-caption" style="text-align:center;">Bottom view of Raspberry Pi attached to base plate</td>
+</tr>
+</tbody>
+</table>
+<p>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left:auto;margin-right:auto;text-align:center;">
+<tbody>
+<tr>
+<td style="text-align:center;"><a href="http://162.243.9.245/wp-content/uploads/2015/07/334f7-imag0412.jpg" style="margin-left:auto;margin-right:auto;"><img border="0" src="{{ site.baseurl }}/assets/334f7-imag0412.jpg" height="237" width="320" /></a></td>
+</tr>
+<tr>
+<td class="tr-caption" style="text-align:center;">Bottom view of Raspberry Pi, with base plate removed. Again, the plastic spacers are just standing there.</td>
+</tr>
+</tbody>
+</table>
+<div>In case you were wondering: yes, it did take a while to find a configuration with which 1) the plastic spacers could sit comfortably on the board and 2) all four spacers were aligned to the holes of the base plate.</div>
+<div></div>
+<div><u>Conclusion</u></div>
+<div>OK that may have been a little too elaborate a description. Still, I hope this was helpful. One more thing: if you want a fourth point of contact for your Arduino Uno, you can place a small block between the Uno and the Ethernet port of the RPi. That space on the Uno is smooth and non-conductive. I didn't do this because I didn't need the support there.</div>

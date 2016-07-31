@@ -1,0 +1,90 @@
+---
+layout: post
+title: Single boot MacBook Air running Ubuntu 14.04
+date: 2015-07-18 17:05:00.000000000 -07:00
+type: post
+published: true
+status: publish
+categories:
+- operating systems
+tags: []
+meta:
+  _publicize_pending: '1'
+  blogger_blog: blog.jiashen.me
+  blogger_author: Jia Shen Boon
+  blogger_406b70948e1d03d2554041dda5a8b48e_permalink: '6369373923933502757'
+  _edit_last: '81887416'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1464280250;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:12;}i:1;a:1:{s:2:"id";i:8;}i:2;a:1:{s:2:"id";i:13;}}}}
+  original_post_id: '7'
+  _wp_old_slug: '7'
+author:
+  login: boonjiashen
+  email: jiashen@gmail.com
+  display_name: jiashen
+  first_name: ''
+  last_name: ''
+---
+<h2>Motivation</h2>
+<p>For a long time, my MacBook Air was set up to boot up to both Mac OS X Maverick and Ubuntu 14.04, i.e., dual boot. What happens is you just hold the alt/option button on startup, and the screen will prompt you to choose either the Maverick or Ubuntu partition.</p>
+<p>Yesterday I decided to go all out with Ubuntu - no more Mac OS X - for a couple of reasons. 1) The Maverick partition took up 20 GB in my 128 GB machine. That's a big percentage. 2) I wasn't using Maverick for much of anything anyway, and I've found alternatives to those use cases. 3) The dual boot solution always felt inelegant. Having to choose a partition at startup just <em>feels</em> ugly.</p>
+<p>I wanted a single boot MacBook Air running Ubuntu, and surprisingly, I couldn't find a good guide on the Internet for this. This post is just a diary entry on <strong>what worked for me</strong>. I'm not an operating systems guru, I'm not a kernel maintainer. But if you're in the same situation as I was and you follow these instructions, you'll probably get what you came for,</p>
+<h2>Ingredients</h2>
+<ul>
+<li><b>13" MacBook Air <a href="https://help.ubuntu.com/community/MacBookAir6-2/Trusty">6,2</a></b>. You'll need the ~200 MB recovery partition that comes with your MacBook Air. The partition lets you kind of perform emergency procedures when things go awry. We need it; if you removed it, I can't help you.</li>
+<li><b>SD card with 32-bit Ubuntu 14.04.2 in persistent mode.</b></li>
+<li><b>Wired Internet connection</b>. The Ubuntu installer doesn't come with the driver for the MacBook Air's wireless card. The easiest way to get wireless Internet is to start with a wired connection and then download the wireless card driver. (As far as I know, the only way to have a wireless connection on the MacBook Air is Thunderbolt-Ethernet adaptor + Ethernet cable + Ethernet port to the Internet.)</li>
+</ul>
+<h2>Steps</h2>
+<div>
+<ol>
+<li>Back up all your files. They're about to be erased from your machine.</li>
+<li>Boot up the recovery disk. This comprises holding CMD+R when you hear the Apple startup tone.</li>
+<li>Select "Disk Utility".</li>
+<li>Partition your disk for Ubuntu the way you like it*. I allocated 30 GB to root, 4 GB to swap, 8 MB to the reserved BIOS boot area, and the rest to /home. Don't worry about the partition format since you can format them via the Ubuntu installer.</li>
+<li>Boot up the SD card.</li>
+<li>Select "Install Ubuntu".</li>
+<li>Select "Something else" when prompted to select an installation type.</li>
+<li>Allocate your partitions the way you decided (e.g., mount the 30 GB partition to root). Wherever possible, choose to reformat the partition. I chose ext3 as the format, but really I know nothing about disk formats.</li>
+<li>Let the installer do its thing. The last thing it'll do is prompt you to restart the machine. When it restarts, your MacBook Air will now boot straight to Ubuntu!</li>
+</ol>
+<div>
+<p>*Refer to <a href="http://apple.stackexchange.com/questions/167868/cant-make-more-than-two-partitions">this stackexchange post</a> if Disk Utility isn't letting you create more than two partitions.</p>
+</div>
+</div>
+<h2>What didn't work</h2>
+<p>The steps above look all fine and good, but I actually faced more trouble than expected to get the machine up. Here's one method that <b>DIDN'T</b> work.</p>
+<div>
+<ol>
+<li>Partition hard disk as stated above, but without the reserved BIOS boot area.</li>
+<li>Install from a USB stick (instead of an SD card) with an Ubuntu 64-bit (instead of 32-bit) installer in non-persistent mode (as opposed to persistent mode).</li>
+<li>After installation, the machine wouldn't be able to find the Ubuntu partition.
+<ul>
+<li>If I didn't hold the option/alt button on startup, the screen would flash a "file not found" kind of icon.</li>
+<li>If I did hold the option/alt button on startup, the startup manager would fire up but with no options available.</li>
+</ul>
+</li>
+</ol>
+<div>Here's another method that <b>DIDN'T </b>work.</div>
+</div>
+<div>
+<ol>
+<li>Partition hard disk <b>with</b> reserved BIOS boot area.</li>
+<li>Install from USB stick with an Ubuntu 64-bit installer in non-persistent mode.</li>
+<li>After installation the machine seems to try to boot into Ubuntu, but a black screen will appear with the message "error: file '/grub/i386-pc/normal.mod' not found." followed by a "grub rescue" prompt.</li>
+</ol>
+<div>
+<p>As you can see, my friends, behind every successful man is a lot of failure.</p>
+</div>
+</div>
+<h2>Conclusion</h2>
+<p>We discussed a method to have just a single Ubuntu operating system running on a 13" MacBook Air. As long as your recovery partition still exists, this method should work.</p>
+<p>Hope this helps!</p>
+<div>
+<h2>References</h2>
+</div>
+<div>
+<ul>
+<li>How to dual boot OS-X/Ubuntu on a 13" MacBook Air [<a href="https://help.ubuntu.com/community/MacBookAir6-2/Trusty">Ubuntu</a>]. By far the most useful reference.</li>
+<li>How to load into an SD card an Ubuntu installer in persistent mode [<a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/">pendrivelinux</a>]</li>
+</ul>
+</div>
