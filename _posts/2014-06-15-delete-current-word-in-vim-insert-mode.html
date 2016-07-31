@@ -1,0 +1,28 @@
+---
+layout: post
+title: Delete current word in Vim Insert mode
+date: 2014-06-15 09:35:00.000000000 -07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  blogger_blog: blog.jiashen.me
+  blogger_author: Jia Shen Boon
+  blogger_406b70948e1d03d2554041dda5a8b48e_permalink: '8564486774600683758'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1460953958;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:13;}i:1;a:1:{s:2:"id";i:19;}i:2;a:1:{s:2:"id";i:8;}}}}
+author:
+  login: jiashen
+  email: jiashen@gmail.com
+  display_name: jiashen
+  first_name: ''
+  last_name: ''
+---
+<p><b>Problem</b><br />You're typing away in Vim's Insert mode and just typed a word wrongly. That's a very common scenario right? If you come from a MS Word background (like me), your first instinct may be to hit Shift+Backspace. In Vim, however, that doesn't work. I'll give two methods that do.</p>
+<div class="separator" style="clear:both;text-align:center;"><a href="http://162.243.9.245/wp-content/uploads/2015/07/d7460-optimised.gif" style="margin-left:1em;margin-right:1em;"><img border="0" src="{{ site.baseurl }}/assets/d7460-optimised.gif" height="101" width="320" /></a></div>
+<p><b>Solution 1</b><br /><span style="font-family:Courier New, Courier, monospace;">Ctrl+w</span></p>
+<p>Simple as that. As stated in the <a href="http://vimdoc.sourceforge.net/htmldoc/insert.html#ins-special-keys">Vim documentation</a>, in Insert mode this is to "delete the word before the cursor".</p>
+<p><b>Solution 2</b><br /><span style="font-family:Courier New, Courier, monospace;">ciw</span></p>
+<p>Press <span style="font-family:Courier New, Courier, monospace;">Esc</span> (or <span style="font-family:Courier New, Courier, monospace;">Ctrl+[</span>, or <span style="font-family:Courier New, Courier, monospace;">Ctrl+c</span>) to enter Normal mode, and <span style="font-family:Courier New, Courier, monospace;">ciw</span> to delete the current word and pop back into Insert mode at the same time. (Bonus: do <span style="font-family:Courier New, Courier, monospace;">ciW</span> to delete the current WORD, which includes punctuation, such as <span style="font-family:Courier New, Courier, monospace;">"short-term"</span> or <span style="font-family:Courier New, Courier, monospace;"><i /></span>)</p>
+<p>This was what I did before I knew about <span style="font-family:Courier New, Courier, monospace;">Ctrl+w</span>.</p>

@@ -1,0 +1,36 @@
+---
+layout: post
+title: Raspberry Pi to Arduino over serial USB
+date: 2013-08-24 15:40:00.000000000 -07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  blogger_blog: blog.jiashen.me
+  blogger_author: Jia Shen Boon
+  blogger_406b70948e1d03d2554041dda5a8b48e_permalink: '4500593613060250483'
+  _jetpack_related_posts_cache: a:1:{s:32:"f196cd99f42a890a6220cf68873b5a30";a:2:{s:7:"expires";i:1463510797;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:26;}i:1;a:1:{s:2:"id";i:25;}i:2;a:1:{s:2:"id";i:15;}}}}
+author:
+  login: jiashen
+  email: jiashen@gmail.com
+  display_name: jiashen
+  first_name: ''
+  last_name: ''
+---
+<p>Today I was playing around with sending data from the Raspberry Pi to an Arduino over serial USB, but there was an issue with the receive rate of the Arduino - it was lagging very badly behind the send rate of the RPi.</p>
+<p>Here's a bit of background. To start this robotics project, I first bought a couple of items from <a href="http://www.sgbotic.com/index.php">Singapore Robotic</a>, an online shop that specializes in robotics. The catalogue isn't as extensive as many of the larger online retailers, but I think the selection is good. We can't be too selective for a market as small as Singapore. Anyway here's my shopping list:
+<ul>
+<li>1x Arduino Uno Rev 3</li>
+<li>1x digital multimeter</li>
+<li>1x wire stripper</li>
+<li>1x soldering stand</li>
+<li>1x 2-wheeled chassis with 2x DC motor and a battery holder</li>
+</ul>
+<p>I plan to get a little more later. Disclaimer: I'm quite a novice in electrical and electronic equipment. This is the first time I'm tinkering with a microcontroller, so please do not treat this as instructions.</p>
+<p>The idea was to use my <a href="http://bjiashen.blogspot.sg/2013/08/android-phone-as-orientation-sensor-for.html">orientation data</a> to get some actuation going on my Arduino. Since I don't have any sensor besides the built-in LED on the Arduino, that is pretty much the only choice I have. The LED is to blink quickly when the phone is vertical or near-vertical, and blink slowly otherwise. For starters I would only have two blink rates - a fast one for the vertical state and a slow one for the not-so-vertical state.</p>
+<p>I followed <a href="http://blog.oscarliang.net/connect-raspberry-pi-and-arduino-usb-cable/">this article</a> to get a skeletal program for USB communication. Sending from the RPi and receiving from the Arduino were both fine.</p>
+<p>The problem came when I incorporated the LED blinking. The slow blinking consisted of 200 ms of light-on time and 200 ms of no-light time, repeated indefinitely. This by itself is a bit of a problem because say you want to change the blink rate to something faster: the program has to wait till the entire 400 ms cycle is done before it can read the new value (to know that the blink-rate need to be changed) and adjust accordingly. But this was a relatively minor problem.</p>
+<p>The biggie was that it took a really long time for the Arduino to respond to my phone movement. My suspicion is that the serial communication has a buffer that's like a queue - when we transmit data from the RPi the queue gets longer, and each time the Arduino reads the data the queue gets shorter. But because the Arduino has that 400 ms cycle, it reads the buffer much more slowly than the RPi writes. The result is that it always lags behind the sensory input from the phone/RPi.</p>
+<p>I'll need to investigate further on this.</p>

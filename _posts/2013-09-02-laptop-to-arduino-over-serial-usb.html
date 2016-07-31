@@ -1,0 +1,33 @@
+---
+layout: post
+title: Laptop to Arduino over serial USB
+date: 2013-09-02 08:38:00.000000000 -07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  blogger_blog: blog.jiashen.me
+  blogger_author: Jia Shen Boon
+  blogger_406b70948e1d03d2554041dda5a8b48e_permalink: '2636743991440636551'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1462858074;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:27;}i:1;a:1:{s:2:"id";i:25;}i:2;a:1:{s:2:"id";i:15;}}}}
+author:
+  login: jiashen
+  email: jiashen@gmail.com
+  display_name: jiashen
+  first_name: ''
+  last_name: ''
+---
+<p>The last time I wrote, I talked about how the Arduino seemed to be reading serial information slower than the Raspberry Pi was writing it.</p>
+<p>After reading the <a href="http://www.tldp.org/HOWTO/Serial-HOWTO-3.html">TLDP Serial HOWTO</a>, I learnt that my suspicion on the serial buffer is true: it is a FIFO queue. That makes it quite clear why my Arduino was lagging behind: because I intentionally added a few hundred milliseconds of delay after every read statement. As a result, the buffer is getting clogged with writes from the Raspberry Pi during this few hundred ms, and following that the Arduino reads the buffer just once.</p>
+<p>To recap: previously my Arduino code was something like this:<br />
+<blockquote><span>char buffer = '';</span><br /><span></span><br /><span>void setup(){</span><br /><span>  Serial.begin(9600);</span></p></blockquote>
+<blockquote><p><span>}</p>
+<p>void loop(){</span><br /><span>  if (Serial.available()){<br />    buffer = Serial.read();</span><br /><span>  }</span><br /><span>  /*** Do some stuff here with buffer char ***/ </span><br /><span>} </span></p></blockquote>
+<p>Now <span>loop()</span> is more like this:<br />
+<blockquote class="tr_bq"><span>void loop(){</span></p></blockquote>
+<blockquote><p><span>  while (Serial.available()){<br />    buffer = Serial.read();</span><br /><span>  }</span><br /><span>  /*** Do some stuff here with buffer char ***/ </span><br /><span>} </span></p></blockquote>
+<p><span style="font-family:inherit;">If you couldn't tell the difference, I simply changed the <span>if</span> keyword to <span>while</span>, such that every time <span>loop()</span> runs, the buffer is read till the last byte. Then we do things with that byte. Previously, only the head of the buffer queue was read for each run of <span>loop()</span>, and that was the cause of the problems.</span><br /><span style="font-family:inherit;"><br /></span><span style="font-family:inherit;">The downside of this is that even if there was nothing left in the buffer, the <span>buffer</span> variable will still contain the value from the previous <span>Serial.read()</span> (since it's a global variable), and the <span>/*** Do some stuff ***/</span> part will still run with this previous. This may not be the behaviour that you want, but for me it's fine.</span></p>
+<p><span style="font-family:inherit;">And now I no longer have the lag issue.</span></p>
+<p><span style="font-family:inherit;">On a separate note, I ordered a few more electronic parts from <a href="http://sg.element14.com/">Element 14</a>, including an <a href="http://arduino.cc/en/Main/ArduinoMotorShieldR3">Arduino motor shield</a>. It should be arriving today. I'm pretty excited about getting my robot up and running. The next challenge I face now is getting a good power supply for the Raspberry Pi, Arduino and the DC motors. I at least will need some form of <a href="http://en.wikipedia.org/wiki/Linear_regulator">voltage</a> <a href="http://en.wikipedia.org/wiki/Switching_regulator">regulation</a> for the Pi. I'm reading up on that now. Fingers crossed!</span></p>
