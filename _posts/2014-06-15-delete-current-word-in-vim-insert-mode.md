@@ -14,7 +14,7 @@ blogger_orig_url: http://blog.jiashen.me/2014/06/delete-current-word-in-vim-inse
 
 You're typing away in Vim's Insert mode and just typed a word wrongly. That's a very common scenario right? If you come from a MS Word background (like me), your first instinct may be to hit Shift+Backspace. In Vim, however, that doesn't work. I'll give two methods that do.
 
-![screenshot]({{ site.url }}/assets/vim_insert.gif)
+![screenshot]({{ site.baseurl }}/assets/vim_insert.gif)
 
 # Solution 1
 
