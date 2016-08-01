@@ -21,11 +21,11 @@ In the Street Fighter game series, there is a situation known as the <i>neutral 
 
 # Challenges
 
-This task may seem trivial at first glance, but there are several challenges in doing computer vision here that are unique to Street Fighter.<ul>
-<li><b>Rapidly changing poses</b>. Since characters are not bound by the laws of physics, they can quickly change poses between consecutive frames.</li>
-<li><b>High variance in body poses</b>. Unlike real world situations such as pedestrian detection, characters in SF4 have a wide range of fighting poses that are not easy to generalize from a small sample size.</li>
-<li><b>Variance in color</b>. You would think that a character with a certain costume would have the same color throughout the match, but in SF4, several moves will cause any character's color to change - typically to bright yellow or white, for a brief moment.</li>
-</ul>
+This task may seem trivial at first glance, but there are several challenges in doing computer vision here that are unique to Street Fighter.
+
+- __Rapidly changing poses__. Since characters are not bound by the laws of physics, they can quickly change poses between consecutive frames.
+- __High variance in body poses__. Unlike real world situations such as pedestrian detection, characters in SF4 have a wide range of fighting poses that are not easy to generalize from a small sample size.
+- __Variance in color__. You would think that a character with a certain costume would have the same color throughout the match, but in SF4, several moves will cause any character's color to change - typically to bright yellow or white, for a brief moment.
 
 ![change poses]({{ site.baseurl }}/assets/change_poses.jpg){:height="640px"}
 
