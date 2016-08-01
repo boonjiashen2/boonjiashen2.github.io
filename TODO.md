@@ -1,2 +1,3 @@
 - Update dates of oldest posts to be the same as blogger site. Why did it get corrupted?
 - Migrate to blog.jiashen.me
+- Add linkedin link https://blog.r3bl.me/en/simple-social-media-links-jekyll/
