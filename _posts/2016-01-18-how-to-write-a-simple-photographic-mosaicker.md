@@ -13,17 +13,12 @@ meta:
   _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1463375082;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:180;}i:1;a:1:{s:2:"id";i:16;}i:2;a:1:{s:2:"id";i:28;}}}}
   original_post_id: '146'
   _wp_old_slug: '146'
-author:
-  login: boonjiashen
-  email: jiashen@gmail.com
-  display_name: jiashen
-  first_name: ''
-  last_name: ''
 ---
 
 <p>Today we'll learn how to write a simple photographic mosaicker! You've probably seen those large pixelated images that are composed of tiny irrelevant images, like a portrait of Obama that comprises tiny cat pictures. These are known as <strong>photographic mosaics. </strong>Here I'll describe a very simple approach to creating such a mosaic, using <a href="https://en.wikipedia.org/wiki/Nearest_neighbor_search">nearest neighbor search</a> and the<a href="https://www.cs.toronto.edu/~kriz/cifar.html"> CIFAR-10 dataset</a>.</p>
 
 ![seagull]({{ site.baseurl }}/assets/640px-Mosaicr_seagull.jpg)
+
 Image of a seagull comprising tiny hexagons. No, we're not recreating this, but something similar!
 
 <p>A little backstory: last semester, I was the teaching assistant for <a href="http://pages.cs.wisc.edu/~dyer/cs534/">CS534 Computational Photography</a> here at Wisconsin, and at the end of the semester I was asked, by a commissioner who projected a silhouette of a bat onto the Wisconsin night sky, to come up with new assignment ideas. This idea of a photographic mosaicker didn't make the cut because it didn't fit in our existing syllabus, but the effect is so strong and the approach is so simple that I thought I'd share it here!</p>
