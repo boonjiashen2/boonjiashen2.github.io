@@ -1,7 +1,6 @@
 ---
 layout: post
 title: 'Delete current word in Vim Insert mode '
-date: '2014-06-15T02:35:00.000-07:00'
 author: Jia Shen Boon
 tags:
 modified_time: '2014-06-15T02:35:11.299-07:00'

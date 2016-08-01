@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Street Fighter 4 Character Detection
-date: '2015-02-23T21:09:00.003-08:00'
 author: Jia Shen Boon
 tags:
 modified_time: '2015-02-23T22:11:12.719-08:00'

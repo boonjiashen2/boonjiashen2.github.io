@@ -1,7 +1,6 @@
 ---
 layout: post
 title: How to write a simple photographic mosaicker
-date: 2016-01-18 18:04:34.000000000 -08:00
 type: post
 published: true
 status: publish
