@@ -18,3 +18,5 @@ github_username:  boonjiashen
 
 # Build settings
 markdown: kramdown
+
+permalink: /:year/:month/:day/:title
