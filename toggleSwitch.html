@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Toggle switch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="card">
+        <div class="expansionButton" style="text-align: right">
+            <a href="javascript:void(0)">[+]</a></div>
+        <div class="truncationButton" style="text-align: right"><a href="javascript:void(0)">[-]</a></div>
+        <div class="truncatedBody">Subtracted stuff!</div>
+        <div class="expandedBody">
+            Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff!
+        </div>
+    </div>
+    <hr>
+    <div class="card">
+        <div class="truncatedBody">Truncated stuff
+            <div class="expansionButton">[See more]</div>
+        </div>
+        <div class="expandedBody">
+            Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff!
+            <div class="truncationButton">[See less]</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    function DisplayToggle(params) {
+
+        this.checkParams = function(params) {
+            foo = params;
+            if (!params.hasOwnProperty('$element1'))
+                throw new Error('no $element1');
+            if (!params.hasOwnProperty('$element2'))
+                throw new Error('no $element2');
+        }
+
+        this.checkParams(params);
+        this.$element1 = params.$element1;
+        this.$element2 = params.$element2;
+
+        this.toElement1 = function() {
+            this.$element1.show();
+            this.$element2.hide();
+        }
+
+        this.toElement2 = function() {
+            this.$element2.show();
+            this.$element1.hide();
+        }
+    }
+
+    function CompositeDisplayToggle(displayToggles) {
+
+        this.displayToggles = displayToggles;
+
+        this.allToElement1 = function() {
+            for (let displayToggle of this.displayToggles) {
+                displayToggle.toElement1();
+            }
+        }
+
+        this.allToElement2 = function() {
+            for (let displayToggle of this.displayToggles) {
+                displayToggle.toElement2();
+            }
+        }
+    }
+
+    $expansionButton = $(".expansionButton");
+    $truncationButton = $(".truncationButton");
+    var buttonParams = {
+        $element1: $expansionButton,
+        $element2: $truncationButton,
+    }
+
+    var bodyParams = {
+        $element1: $(".truncatedBody"),
+        $element2: $(".expandedBody"),
+    }
+
+    var card = new CompositeDisplayToggle([
+        new DisplayToggle(buttonParams),
+        new DisplayToggle(bodyParams)
+    ]);
+
+    card.expand = card.allToElement2;
+    card.truncate = card.allToElement1;
+
+    $expansionButton.click(function() {
+        card.expand()
+    });
+    $truncationButton.click(function() {
+        card.truncate()
+    });
+
+    card.truncate();
+    </script>
+</body>
+
+</html>
