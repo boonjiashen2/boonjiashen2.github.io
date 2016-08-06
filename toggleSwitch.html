@@ -9,22 +9,22 @@
 
 <body>
     <div class="card">
-        <div class="expansionButton" style="text-align: right">
+        <div class="button expansionButton" style="text-align: right">
             <a href="javascript:void(0)">[+]</a></div>
-        <div class="truncationButton" style="text-align: right"><a href="javascript:void(0)">[-]</a></div>
-        <div class="truncatedBody">Subtracted stuff!</div>
-        <div class="expandedBody">
+        <div class="button truncationButton" style="text-align: right"><a href="javascript:void(0)">[-]</a></div>
+        <div class="cardBody truncatedBody">Subtracted stuff!</div>
+        <div class="cardBody expandedBody">
             Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff!
         </div>
     </div>
     <hr>
     <div class="card">
-        <div class="truncatedBody">Truncated stuff
-            <div class="expansionButton">[See more]</div>
+        <div class="cardBody truncatedBody">Truncated stuff
+            <div class="button expansionButton">[See more]</div>
         </div>
-        <div class="expandedBody">
+        <div class="cardBody expandedBody" id="anExpanded">
             Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff!
-            <div class="truncationButton">[See less]</div>
+            <div class="button truncationButton">[See less]</div>
         </div>
     </div>
     <script type="text/javascript">
@@ -69,35 +69,64 @@
             }
         }
     }
-
-    $expansionButton = $(".expansionButton");
-    $truncationButton = $(".truncationButton");
-    var buttonParams = {
-        $element1: $expansionButton,
-        $element2: $truncationButton,
+    </script>
+    <script type="text/javascript">
+    var getCardElements = function($element) {
+        var $parent = $element.parent(".card");
+        if ($parent.length != 1) {
+            throw new Error("Should only have one card parent!");
+        }
+        return {
+            $truncationButton: $parent.find(".truncationButton"),
+            $expansionButton: $parent.find(".expansionButton"),
+            $truncatedBody: $parent.find(".truncatedBody"),
+            $expandedBody: $parent.find(".expandedBody"),
+        }
     }
 
-    var bodyParams = {
-        $element1: $(".truncatedBody"),
-        $element2: $(".expandedBody"),
+    function wireUpCard(params) {
+        function checkParams(params) {
+            requiredAttributes = [
+                '$truncationButton',
+                '$expansionButton',
+                '$truncatedBody',
+                '$expandedBody',
+            ];
+            for (let attr of requiredAttributes) {
+                if (!params.hasOwnProperty(attr)) {
+                    throw new Error("doesn't have  " + attr);
+                }
+            }
+        }
+        checkParams(params);
+
+        var buttonParams = {
+            $element1: params.$expansionButton,
+            $element2: params.$truncationButton,
+        }
+
+        var bodyParams = {
+            $element1: params.$truncatedBody,
+            $element2: params.$expandedBody,
+        }
+
+        var card = new CompositeDisplayToggle([
+            new DisplayToggle(buttonParams),
+            new DisplayToggle(bodyParams)
+        ]);
+
+        params.$expansionButton.click(function() {
+            card.allToElement2()
+        });
+        params.$truncationButton.click(function() {
+            card.allToElement1()
+        });
+
+        return card;
     }
 
-    var card = new CompositeDisplayToggle([
-        new DisplayToggle(buttonParams),
-        new DisplayToggle(bodyParams)
-    ]);
-
-    card.expand = card.allToElement2;
-    card.truncate = card.allToElement1;
-
-    $expansionButton.click(function() {
-        card.expand()
-    });
-    $truncationButton.click(function() {
-        card.truncate()
-    });
-
-    card.truncate();
+    var foo = $("#anExpanded");
+    wireUpCard(getCardElements(foo));
     </script>
 </body>
 
