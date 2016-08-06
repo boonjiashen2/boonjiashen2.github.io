@@ -20,11 +20,11 @@
     <hr>
     <div class="card">
         <div class="cardBody truncatedBody">Truncated stuff
-            <div class="button expansionButton">[See more]</div>
+            <span class="button expansionButton"><a href="javascript:void(0)">[See more]</a></span>
         </div>
         <div class="cardBody expandedBody" id="anExpanded">
             Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff! Expanded stuff!
-            <div class="button truncationButton">[See less]</div>
+            <span class="button truncationButton"><a href="javascript:void(0)">[See less]</a></span>
         </div>
     </div>
     <script type="text/javascript">
@@ -71,9 +71,11 @@
     }
     </script>
     <script type="text/javascript">
+    var dummy;
     var getCardElements = function($element) {
-        var $parent = $element.parent(".card");
+        var $parent = $element.parents(".card");
         if ($parent.length != 1) {
+            // dummy = $parent;
             throw new Error("Should only have one card parent!");
         }
         return {
@@ -115,18 +117,23 @@
             new DisplayToggle(bodyParams)
         ]);
 
+        card.expand = card.allToElement2;
+        card.truncate = card.allToElement1;
         params.$expansionButton.click(function() {
-            card.allToElement2()
+            card.expand();
         });
         params.$truncationButton.click(function() {
-            card.allToElement1()
+            card.truncate();
         });
 
         return card;
     }
 
-    var foo = $("#anExpanded");
-    wireUpCard(getCardElements(foo));
+    $(".expansionButton").each(function() {
+        var card = wireUpCard(getCardElements($(this)));
+        card.expand();
+    });
+
     </script>
 </body>
 
