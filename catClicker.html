@@ -6,17 +6,60 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
-<div><img class="cat" src="assets/cat.jpg"></div>
-<div class="counter"></div>
 <script type="text/javascript">
-    var $cat = $(".cat");
-    var counter = 0;
-    var $counter = $(".counter");
-    $cat.click(function(event) {
-        counter = counter + 1;
-        $counter.text(counter);
-    });
-    $counter.text(counter);
+
+    function createCatDiv(catParams) {
+        function checkParams(params) {
+            var requiredAttr = ['name', 'imageFilename', 'counter'];
+            for (let attr of requiredAttr) {
+                if (!params.hasOwnProperty(attr)) {
+                    throw new Error('no property ' + attr);
+                }
+            }
+        }
+        checkParams(catParams);
+
+        var $parentDiv = $("<div />");
+        var $nameDiv = $("<div />", {
+            text: catParams.name,
+        });
+        var $imageDiv = $("<img />", {
+            src: catParams.imageFilename,
+        });
+        var $counterDiv = $("<div />", {
+            text: catParams.counter,
+        });
+        $imageDiv.click(function() {
+            catParams.counter++;
+            $counterDiv.text(catParams.counter);
+        });
+        $parentDiv.append($nameDiv).append($imageDiv).append($counterDiv);
+
+        return $parentDiv;
+    }
+
+    var cats = [
+    {
+        name: "chicken",
+        imageFilename: "assets/cat.jpg",
+    },
+    {
+        name: "facial",
+        imageFilename: "assets/cat2.jpg",
+    },
+    ];
+
+    for (let cat of cats) {
+        cat.counter = 0;
+        createCatDiv(cat).appendTo("body");
+    }
+    // $parent = $("<div />");
+    // $child1 = $("<div />", {text: "foo"});
+    // $child1.appendTo($parent);
+    // $child2 = $("<div />", {text: "bar"});
+    // $child2.appendTo($parent);
+    // $parent.appendTo("body");
+    // $("<div />", {text: "boogers"}).appendTo("body");
 </script>
 </body>
 </html>
