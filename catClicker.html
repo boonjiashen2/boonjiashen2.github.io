@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 
-    function createCatDiv(catParams) {
+    function catController(catParams) {
         function checkParams(params) {
             var requiredAttr = ['name', 'imageFilename', 'counter'];
             for (let attr of requiredAttr) {
@@ -49,10 +49,25 @@
             text: cat.name,
         });
         $link.click(function() {
-            $(".displayArea").html(cat.$div);
+            listItemClickHandler(cat);
         });
 
         return $link;
+    }
+
+    function listItemClickHandler(cat) {
+        var $div = catController(cat);
+        $(".displayArea").html($div);
+    }
+
+    function listController(cats) {
+        var $list = $("<ul />");
+        for (let cat of cats) {
+            var $item = $("<li />")
+            $item.append(createLink(cat));
+            $list.append($item);
+        }
+        return $list;
     }
 
     var cats = [
@@ -80,25 +95,9 @@
 
     for (let cat of cats) {
         cat.counter = 0;
-        cat.$div = createCatDiv(cat);
-        cat.$link = createLink(cat);
     }
 
-    var $list = $("<ul />");
-    for (let cat of cats) {
-        var $item = $("<li />")
-        $item.append(cat.$link);
-        $list.append($item);
-    }
-
-    $(".list").html($list);
-    // $parent = $("<div />");
-    // $child1 = $("<div />", {text: "foo"});
-    // $child1.appendTo($parent);
-    // $child2 = $("<div />", {text: "bar"});
-    // $child2.appendTo($parent);
-    // $parent.appendTo("body");
-    // $("<div />", {text: "boogers"}).appendTo("body");
+    $(".list").html(listController(cats));
 </script>
 </body>
 </html>
