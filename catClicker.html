@@ -4,13 +4,80 @@
     <title>Cat clicker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style type="text/css">
+        input {
+            border: 1px solid #ff0000;
+        }
+        .cancelButton {
+            background: lightgray;
+        }
+        .submitButton {
+            background: green;
+        }
+    </style>
 </head>
 <body>
 
 <div class="list"></div>
 <div class="displayArea"></div>
+<div class="adminArea">
+    <div class="adminButton"><a href="javascript:void(0)">Admin</a></div>
+    <form class="adminForm" action="javascript:void(0)">
+        Name <br />
+        <input class="adminCatName" type="text" /><br />
+        Image filename: <br />
+        <input class="adminCatImageFilename" type="text" /><br />
+        Counter: <br />
+        <input class="adminCatCounter" type="text" /><br />
+        <input class="cancelButton" type="submit" value="Cancel" />
+        <input class="submitButton" type="submit" value="Submit" />
+    </form>
+</div>
 
 <script type="text/javascript">
+
+    var adminView = {
+        submitHandler: function() {
+            var cat = {
+                name: this.$nameField.val(),
+                imageFilename: this.$imageFilenameField.val(),
+                counter: this.$counterField.val(),
+            };
+            controller.updateCurrentCatData(cat);
+        },
+
+        init: function() {
+            this.$adminForm = $(".adminForm")
+            this.$nameField = $(".adminCatName");
+            this.$imageFilenameField = $(".adminCatImageFilename");
+            this.$counterField = $(".adminCatCounter");
+            $(".cancelButton").click(function() {
+                controller.hideAdminForm();
+            });
+            $(".submitButton").click(function() {
+                adminView.submitHandler();
+            });
+            $(".adminButton").click(function() {
+                controller.showAdminForm();
+            });
+
+            this.render();
+        },
+
+        render: function() {
+            var cat = controller.getCurrentCat();
+            this.$nameField.val(cat.name);
+            this.$imageFilenameField.val(cat.imageFilename);
+            this.$counterField.val(cat.counter);
+            if (controller.getAdminFormIsDisplayed()) {
+                this.$adminForm.show();
+            }
+            else {
+                this.$adminForm.hide();
+            }
+
+        },
+    };
 
     var listView = {
         init: function() {
@@ -32,13 +99,14 @@
                 text: cat.name,
             });
             $link.click(function() {
-                controller.updateDetailPageWithCat(cat);
+                controller.setCurrentCat(cat);
             });
             return $link;
         },
     };
 
     var detailView = {
+        init: function() {this.render();},
         render: function() {
             var cat = controller.getCurrentCat();
             var $catDiv = this.createDetailDiv(cat);
@@ -72,18 +140,39 @@
             return this.currentCat;
         },
         init: function() {
-            this.currentCat = null;
+            this.currentCat = this.getCats()[0];
+            this.adminFormIsDisplayed = true;
             model.init();
             listView.init();
+            detailView.init();
+            adminView.init();
         },
-        updateDetailPageWithCat: function(cat) {
+        setCurrentCat: function(cat) {
             this.currentCat = cat;
+            listView.render();
             detailView.render();
+            adminView.render();
+        },
+        updateCurrentCatData: function(cat) {
+            $.extend(this.currentCat, cat);
+            this.setCurrentCat(this.currentCat);
         },
         incrementCounter: function() {
             this.currentCat.counter++;
             detailView.render();
-        }
+        },
+
+        getAdminFormIsDisplayed: function() {
+            return this.adminFormIsDisplayed;
+        },
+        hideAdminForm: function() {
+            this.adminFormIsDisplayed = false;
+            adminView.render();
+        },
+        showAdminForm: function() {
+            this.adminFormIsDisplayed = true;
+            adminView.render();
+        },
     };
 
     var model = {
