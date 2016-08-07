@@ -12,92 +12,114 @@
 
 <script type="text/javascript">
 
-    function catController(catParams) {
-        function checkParams(params) {
-            var requiredAttr = ['name', 'imageFilename', 'counter'];
-            for (let attr of requiredAttr) {
-                if (!params.hasOwnProperty(attr)) {
-                    throw new Error('no property ' + attr);
-                }
+    var listView = {
+        init: function() {
+            this.render();
+        },
+        render: function() {
+            var cats = controller.getCats();
+            var $list = $("<ul />");
+            for (let cat of cats) {
+                var $item = $("<li />")
+                $item.append(this.createLink(cat));
+                $list.append($item);
+            }
+            $(".list").html($list);
+        },
+        createLink: function(cat) {
+            var $link = $("<a />", {
+                href: "javascript:void(0)",
+                text: cat.name,
+            });
+            $link.click(function() {
+                controller.updateDetailPageWithCat(cat);
+            });
+            return $link;
+        },
+    };
+
+    var detailView = {
+        render: function() {
+            var cat = controller.getCurrentCat();
+            var $catDiv = this.createDetailDiv(cat);
+            $(".displayArea").html($catDiv);
+        },
+        createDetailDiv: function(cat) {
+            var $parentDiv = $("<div />");
+            var $nameDiv = $("<div />", {
+                text: cat.name,
+            });
+            var $imageDiv = $("<img />", {
+                src: cat.imageFilename,
+                height: '100px',
+            });
+            var $counterDiv = $("<div />", {
+                text: cat.counter,
+            });
+            $imageDiv.click(function() {
+                controller.incrementCounter();
+            });
+            $parentDiv.append($nameDiv).append($imageDiv).append($counterDiv);
+            return $parentDiv;
+        },
+    };
+
+    var controller = {
+        getCats: function() {
+            return model.getCats();
+        },
+        getCurrentCat: function() {
+            return this.currentCat;
+        },
+        init: function() {
+            this.currentCat = null;
+            model.init();
+            listView.init();
+        },
+        updateDetailPageWithCat: function(cat) {
+            this.currentCat = cat;
+            detailView.render();
+        },
+        incrementCounter: function() {
+            this.currentCat.counter++;
+            detailView.render();
+        }
+    };
+
+    var model = {
+        cats: [
+        {
+            name: "chicken",
+            imageFilename: "assets/cat.jpg",
+        },
+        {
+            name: "facial",
+            imageFilename: "assets/cat2.jpg",
+        },
+        {
+            name: "kentuck",
+            imageFilename: "assets/cat3.jpg",
+        },
+        {
+            name: "roast",
+            imageFilename: "assets/cat4.jpg",
+        },
+        {
+            name: "ballat",
+            imageFilename: "assets/cat5.jpg",
+        },
+        ],
+        getCats: function() {
+            return this.cats;
+        },
+        init: function() {
+            for (let cat of this.cats) {
+                cat.counter = 0;
             }
         }
-        checkParams(catParams);
+    };
 
-        var $parentDiv = $("<div />");
-        var $nameDiv = $("<div />", {
-            text: catParams.name,
-        });
-        var $imageDiv = $("<img />", {
-            src: catParams.imageFilename,
-            height: '100px',
-        });
-        var $counterDiv = $("<div />", {
-            text: catParams.counter,
-        });
-        $imageDiv.click(function() {
-            catParams.counter++;
-            $counterDiv.text(catParams.counter);
-        });
-        $parentDiv.append($nameDiv).append($imageDiv).append($counterDiv);
-
-        return $parentDiv;
-    }
-
-    function createLink(cat) {
-        var $link = $("<a />", {
-            href: "javascript:void(0)",
-            text: cat.name,
-        });
-        $link.click(function() {
-            listItemClickHandler(cat);
-        });
-
-        return $link;
-    }
-
-    function listItemClickHandler(cat) {
-        var $div = catController(cat);
-        $(".displayArea").html($div);
-    }
-
-    function listController(cats) {
-        var $list = $("<ul />");
-        for (let cat of cats) {
-            var $item = $("<li />")
-            $item.append(createLink(cat));
-            $list.append($item);
-        }
-        return $list;
-    }
-
-    var cats = [
-    {
-        name: "chicken",
-        imageFilename: "assets/cat.jpg",
-    },
-    {
-        name: "facial",
-        imageFilename: "assets/cat2.jpg",
-    },
-    {
-        name: "kentuck",
-        imageFilename: "assets/cat3.jpg",
-    },
-    {
-        name: "roast",
-        imageFilename: "assets/cat4.jpg",
-    },
-    {
-        name: "ballat",
-        imageFilename: "assets/cat5.jpg",
-    },
-    ];
-
-    for (let cat of cats) {
-        cat.counter = 0;
-    }
-
-    $(".list").html(listController(cats));
+    controller.init();
 </script>
 </body>
 </html>
