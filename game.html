@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My game</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="600"></canvas>
+<script type="text/javascript">
+
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext('2d');
+    var img = null;
+    var frames = [];
+    var frameIdx = 0;
+    var FPS = 10;
+    canvas.addEventListener("mousemove", function(event) {
+        console.log("mousemove!");
+    })
+    var setup = function() {
+        // var body = document.body;
+        // canvas = document.createElement('canvas');
+
+
+        // canvas.width = window.innerWidth;
+        // canvas.height = window.innerHeight;
+
+        // body.appendChild(canvas);
+
+        canvas.addEventListener('mousemouse', function() {
+            console.log("mousemove!");
+        });
+        // document.getElementById("canvas").addEventListener('keydown', function(event) {
+        //     console.log("keydown!");
+        // });
+
+        function onLoad() {
+            console.log("loaded!");
+        }
+
+        var NUM_IMAGES = 8;
+        for (var i = 0; i < NUM_IMAGES; ++i) {
+            frames.push(new Image());
+            frames[i].src = 'assets/obama' + (i + 1) + '.gif';
+            frames[i].onload = onLoad;
+        }
+
+        setInterval(animate, 1000/FPS);
+        console.log("what");
+    };
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(frames[frameIdx], 192, 192);
+        frameIdx = (frameIdx + 1) % frames.length;
+    }
+
+    window.onload = setup;
+</script>
+</body>
+</html>
