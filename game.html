@@ -4,12 +4,10 @@
     <title>My game</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
-<body>
-    <canvas id="myCanvas" width="600" height="600" tabindex="0"></canvas>
 <script type="text/javascript">
 
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext('2d');
+    var canvas = null;
+    var ctx = null;
     var img = null;
     var frames = [];
     var frameIdx = 0;
@@ -17,34 +15,27 @@
     var foo = null;
 
     function onMouseMove(event) {
-        console.log(event.clientX.toString() + ' ' + event.clientY.toString());
+        console.log("mouseover: " + event.clientX.toString() + ' ' + event.clientY.toString());
     }
 
     function onKeyDown(event) {
-        console.log(event.keyCode);
-        // foo = event;
-        console.log("keydown!");
+        console.log("keydown: " + event.keyCode);
     }
 
     var setup = function() {
-        console.log("start of setup");
+
+        var body = document.body;
+        canvas = document.createElement('canvas');
+        ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.tabIndex = 0;
+
+        body.appendChild(canvas);
+
         canvas.addEventListener("mousemove", onMouseMove, false);
         canvas.addEventListener("keydown", onKeyDown, false);
-        // var body = document.body;
-        // canvas = document.createElement('canvas');
-
-
-        // canvas.width = window.innerWidth;
-        // canvas.height = window.innerHeight;
-
-        // body.appendChild(canvas);
-
-        // canvas.addEventListener('mousemouse', function() {
-        //     console.log("mousemove!");
-        // });
-        // document.getElementById("canvas").addEventListener('keydown', function(event) {
-        //     console.log("keydown!");
-        // });
 
         function onLoad() {
             console.log("loaded!");
@@ -69,5 +60,6 @@
 
     window.onload = setup;
 </script>
+<body>
 </body>
 </html>
