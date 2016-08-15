@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
-    <canvas id="myCanvas" width="600" height="600"></canvas>
+    <canvas id="myCanvas" width="600" height="600" tabindex="0"></canvas>
 <script type="text/javascript">
 
     var canvas = document.getElementById("myCanvas");
@@ -14,10 +14,22 @@
     var frames = [];
     var frameIdx = 0;
     var FPS = 10;
-    canvas.addEventListener("mousemove", function(event) {
-        console.log("mousemove!");
-    })
+    var foo = null;
+
+    function onMouseMove(event) {
+        console.log(event.clientX.toString() + ' ' + event.clientY.toString());
+    }
+
+    function onKeyDown(event) {
+        console.log(event.keyCode);
+        // foo = event;
+        console.log("keydown!");
+    }
+
     var setup = function() {
+        console.log("start of setup");
+        canvas.addEventListener("mousemove", onMouseMove, false);
+        canvas.addEventListener("keydown", onKeyDown, false);
         // var body = document.body;
         // canvas = document.createElement('canvas');
 
@@ -27,9 +39,9 @@
 
         // body.appendChild(canvas);
 
-        canvas.addEventListener('mousemouse', function() {
-            console.log("mousemove!");
-        });
+        // canvas.addEventListener('mousemouse', function() {
+        //     console.log("mousemove!");
+        // });
         // document.getElementById("canvas").addEventListener('keydown', function(event) {
         //     console.log("keydown!");
         // });
