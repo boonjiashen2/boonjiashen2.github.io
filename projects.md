@@ -6,11 +6,15 @@ permalink: /projects/
 
 {% assign projects = site.projects | sort: 'date' | reverse %}
 
-<!-- {% assign projects = site.projects %}
+<!-- http://stackoverflow.com/questions/802175/truncating-long-strings-with-css-feasible-yet -->
+
+<!-- {% assign projects = site.projects %} -->
 
 {% for project in projects %}
-* {{ project.date | date_to_string }} [{{ project.title }}](#{{ project.title | slugify }}) {% endfor %}
- -->
+{{ project.date | date_to_string }} [_{{ project.title }}_](#{{ project.title | slugify }})
+{: .linky}
+{% endfor %}
+
 {% for project in projects %}
 
   ***

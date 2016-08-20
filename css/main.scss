@@ -28,6 +28,11 @@ $content-width:    800px;
 $on-palm:          600px;
 $on-laptop:        800px;
 
+.linky {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 
 // Use media queries like this:
