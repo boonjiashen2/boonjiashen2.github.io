@@ -4,22 +4,21 @@ title: Projects
 permalink: /projects/
 ---
 
-<!-- {% assign projects = site.projects | sort: 'date' | reverse %}
+{% assign projects = site.projects | sort: 'date' | reverse %}
+
+<!-- {% assign projects = site.projects %}
+
+{% for project in projects %}
+* {{ project.date | date_to_string }} [{{ project.title }}](#{{ project.title | slugify }}) {% endfor %}
  -->
-{% assign projects = site.projects %}
-
-{% assign project_titles = site.projects | map: "title" %}
-
-{% for title in project_titles %}
-* [{{ title }}](#{{ title | slugify }}) {% endfor %}
 {% for project in projects %}
 
   ***
 
-# {{ project.title }} {#{{ project.title | slugify }}}
+  {{ project.title }} {#{{ project.title | slugify }}}
+===
 
-[[PDF]]({{ project.pdf }})
-{% if project.github %}[[Github]]({{ project.github }}){% endif %}
+   [[PDF]]({{ project.pdf }}) {% if project.github %}[[Github]]({{ project.github }}){% endif %}
 
   __Submission date__\\
   {{ project.date | date_to_string }}
@@ -33,6 +32,7 @@ permalink: /projects/
   {% endif %}
 
   __Abstract__
+
   {{ project.content }}
 
 {% endfor %}
