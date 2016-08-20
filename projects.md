@@ -8,25 +8,19 @@ permalink: /projects/
 
 {% for project in projects %}
 
-  __{{ project.title }}__
+  <big>__{{ project.title }}__</big>
 
+[[PDF]]({{ project.pdf }})
+{% if project.github %}[[Github]]({{ project.github }}){% endif %}
+
+  __Submission date__\\
+  {{ project.date | date_to_string }}
+
+  __Author(s)__\\
+  {{ project.authors | join: ", " | default: "Jia-Shen Boon" }}
+
+  __Abstract__
   {{ project.content }}
-
-{% capture github %} {% endcapture %}
-
-<!-- {% if project.github %}
-Github: [link]({{ project.github }})
-{% endif %}
- -->
-  {% capture info %}
-    Submission date: {{ project.date | date_to_string }}
-    PDF: [[link]({{ project.pdf }})]
-    Author(s): {{ project.authors | join: ", " | default: "Jia-Shen Boon" }}
-  {% endcapture %}
-
-  {{ info | strip | newline_to_br }}
-
-
 
   {% unless forloop.last %}***{% endunless %}
 {% endfor %}
