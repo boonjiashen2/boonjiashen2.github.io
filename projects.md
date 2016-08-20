@@ -12,20 +12,21 @@ permalink: /projects/
 
   {{ project.content }}
 
-  Date: {{ project.date | date_to_string }}
+{% capture github %} {% endcapture %}
+
+<!-- {% if project.github %}
+Github: [link]({{ project.github }})
+{% endif %}
+ -->
+  {% capture info %}
+    Submission date: {{ project.date | date_to_string }}
+    PDF: [[link]({{ project.pdf }})]
+    Author(s): {{ project.authors | join: ", " | default: "Jia-Shen Boon" }}
+  {% endcapture %}
+
+  {{ info | strip | newline_to_br }}
 
 
-{% capture authors %} {% if project.authors %} Authors: {% for author in project.authors %} {{ author }}{% unless forloop.last %}, {% endunless %} {% endfor %} {% endif %} {% endcapture %}
 
-{% capture pdf %}PDF: [[link]({{ project.pdf }})]{% endcapture %}
-
-
-  {{pdf}}
-
-{{ authors }}
-
-  {% unless forloop.last %}
-***
-  {% endunless %}
-
+  {% unless forloop.last %}***{% endunless %}
 {% endfor %}
