@@ -19,6 +19,11 @@ permalink: /projects/
   __Author(s)__\\
   {{ project.authors | join: ", " | default: "Jia-Shen Boon" }}
 
+  {% if project.type %}
+  __Project type__\\
+  {{ project.type }}
+  {% endif %}
+
   __Abstract__
   {{ project.content }}
 
