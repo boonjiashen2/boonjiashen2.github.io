@@ -23,9 +23,10 @@
 
     .inputContainer {
       position: relative;
+      height: 25px;
     }
 
-    .input1 {
+    .searchTextInput {
       position:absolute;
       top: 0px;
       left: 0px;
@@ -34,46 +35,55 @@
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
   <script>
 
-  function TextInputSlider(selector1, selector2) {
-    $(selector2).hide();
-    var firstIsVisible = true;
-
-    this.showFirstItem = function() {
-      if (!firstIsVisible) {
-        $(selector1).show('slide', {'direction': 'left'});
-        $(selector2).hide('slide', {'direction': 'right'});
-        firstIsVisible = true;
-      }
-    }
-    this.showSecondItem = function() {
-      if (firstIsVisible) {
-        $(selector1).hide('slide', {'direction': 'left'});
-        $(selector2).show('slide', {'direction': 'right'});
-        firstIsVisible = false;
-      }
-    }
-  }
-
   $( function() {
+
+    function TextInputSlider(selector1, selector2) {
+      $(selector2).hide();
+      var firstIsVisible = true;
+      var DISTANCE = 1000;
+
+      this.showFirstItem = function() {
+        if (!firstIsVisible) {
+          $(selector1).show('slide', {
+            'direction': 'left',
+            'distance': DISTANCE,
+          });
+          $(selector2).hide('slide', {
+            'direction': 'right',
+            'distance': DISTANCE,
+          });
+          firstIsVisible = true;
+        }
+      }
+      this.showSecondItem = function() {
+        if (firstIsVisible) {
+          $(selector1).hide('slide', {
+            'direction': 'left',
+            'distance': DISTANCE,
+          });
+          $(selector2).show('slide', {
+            'direction': 'right',
+            'distance': DISTANCE,
+          });
+          firstIsVisible = false;
+        }
+      }
+    }
+
     var tabOptions = {
       show: {
         duration: 250,
       },
     };
-    var slider = new TextInputSlider('.input1', '.input2');
+    var slider = new TextInputSlider('.searchTextInput', '.askTextInput');
 
     $( "#tabs" ).tabs(tabOptions);
-    $('.askTextInput').hide();
     $('body').on("tabsactivate", function(event, ui) {
       var clickedToQuestionsPanel = ui.newPanel.attr('id') == 'tabs-4';
       if (clickedToQuestionsPanel) {
-        $('.askTextInput').show();
-        $('.searchTextInput').hide();
         slider.showSecondItem();
       }
       else {
-        $('.askTextInput').hide();
-        $('.searchTextInput').show();
         slider.showFirstItem();
       }
     });
@@ -88,14 +98,10 @@
 </head>
 <body>
 
-<button class="sliderButton">Click to slide</button>
 <div class="inputContainer">
-  <input class="input1" placeholder="input1">
-  <input class="input2" placeholder="input2">
+  <input class="searchTextInput" type="search" placeholder="This is search">
+  <input class="askTextInput" type="search" placeholder="This is ask">
 </div>
-
-<input class="searchTextInput" type="search" placeholder="This is search">
-<input class="askTextInput" type="search" placeholder="This is ask">
 
 <div id="tabs">
   <ul>
