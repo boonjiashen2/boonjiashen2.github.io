@@ -11,11 +11,24 @@
       border: black 1px solid;
       width: 100%;
     }
+    button {
+      background: lightgrey;
+    }
     button.askButton {
       background: lightgreen;
     }
     .questionBox {
       background: lightgrey;
+    }
+
+    .inputContainer {
+      position: relative;
+    }
+
+    .input1 {
+      position:absolute;
+      top: 0px;
+      left: 0px;
     }
   </style>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
@@ -43,10 +56,34 @@
     $('.askButton').click(function(event) {
       $('.ui-tabs-nav').find('a').last().click()
     });
+
+
+    (function(selector1, selector2) {
+      $(selector2).hide();
+      var input1Visible = true;
+      $('.sliderButton').click(function(event) {
+        console.log(input1Visible);
+        if (input1Visible) {
+          $(selector1).hide('slide', {'direction': 'left'});
+          $(selector2).show('slide', {'direction': 'right'});
+        }
+        else {
+          $(selector1).show('slide', {'direction': 'left'});
+          $(selector2).hide('slide', {'direction': 'right'});
+        }
+        input1Visible = !input1Visible;
+      });
+    })('.input1', '.input2');
   } );
   </script>
 </head>
 <body>
+
+<button class="sliderButton">Click to slide</button>
+<div class="inputContainer">
+  <input class="input1" placeholder="input1">
+  <input class="input2" placeholder="input2">
+</div>
 
 <input class="searchTextInput" type="search" placeholder="This is search">
 <input class="askTextInput" type="search" placeholder="This is ask">
