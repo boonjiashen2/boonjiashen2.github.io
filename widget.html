@@ -33,12 +33,35 @@
   </style>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
   <script>
+
+  function TextInputSlider(selector1, selector2) {
+    $(selector2).hide();
+    var firstIsVisible = true;
+
+    this.showFirstItem = function() {
+      if (!firstIsVisible) {
+        $(selector1).show('slide', {'direction': 'left'});
+        $(selector2).hide('slide', {'direction': 'right'});
+        firstIsVisible = true;
+      }
+    }
+    this.showSecondItem = function() {
+      if (firstIsVisible) {
+        $(selector1).hide('slide', {'direction': 'left'});
+        $(selector2).show('slide', {'direction': 'right'});
+        firstIsVisible = false;
+      }
+    }
+  }
+
   $( function() {
     var tabOptions = {
       show: {
         duration: 250,
       },
     };
+    var slider = new TextInputSlider('.input1', '.input2');
+
     $( "#tabs" ).tabs(tabOptions);
     $('.askTextInput').hide();
     $('body').on("tabsactivate", function(event, ui) {
@@ -46,10 +69,12 @@
       if (clickedToQuestionsPanel) {
         $('.askTextInput').show();
         $('.searchTextInput').hide();
+        slider.showSecondItem();
       }
       else {
         $('.askTextInput').hide();
         $('.searchTextInput').show();
+        slider.showFirstItem();
       }
     });
 
@@ -58,23 +83,7 @@
     });
 
 
-    (function(selector1, selector2) {
-      $(selector2).hide();
-      var input1Visible = true;
-      $('.sliderButton').click(function(event) {
-        console.log(input1Visible);
-        if (input1Visible) {
-          $(selector1).hide('slide', {'direction': 'left'});
-          $(selector2).show('slide', {'direction': 'right'});
-        }
-        else {
-          $(selector1).show('slide', {'direction': 'left'});
-          $(selector2).hide('slide', {'direction': 'right'});
-        }
-        input1Visible = !input1Visible;
-      });
-    })('.input1', '.input2');
-  } );
+  });
   </script>
 </head>
 <body>
