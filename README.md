@@ -9,6 +9,7 @@
   >> cd <repo-directory>
   >> # https://github.com/bundler/bundler/issues/4065 "cp Operation not permited"
   >> sudo gem install bundler -n /usr/local/bin # install gem dependencies
+  >> bundle install
   >> bundle exec guard # builds your static pages and runs a server on localhost
   ```
   
