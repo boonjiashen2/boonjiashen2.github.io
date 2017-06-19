@@ -17,6 +17,10 @@
 3. Go to `localhost:4000` on your browser. You should see the main page.
 4. (Optional) Now if you edit and save say, one of the posts, Guard should automatically rebuild the corresponding page and reload the corresponding tab on the browser. Make sure the extension is both enabled and turned on (these two are different things).
 
+## On deployment
+
+Turns out that after you push to Github Pages, the changes will not be reflected on your browser instantly. I guess Github takes some time to build the files. After you push, give it 15 minutes or so for the changes to be seen.
+
 ## On Ubuntu
 
 You'll probably want to install some additional package to get the bundle install to work
