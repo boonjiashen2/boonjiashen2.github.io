@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Moving on to Github Pages and Jekyll
+title: Moving to Github Pages and Jekyll
 ---
 
 Yesterday I moved the site from [WordPress.com](https://wordpress.com/) to [Jekyll](https://jekyllrb.com/)/[Github Pages](https://pages.github.com/). I just want to quickly jot down my thoughts on the process.
