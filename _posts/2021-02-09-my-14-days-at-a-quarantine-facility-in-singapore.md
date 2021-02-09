@@ -1,9 +1,9 @@
 ---
 layout: post
-title: My 14 days in a quarantine facility in Singapore
+title: My 14 days at a quarantine facility in Singapore
 ---
 
-I spent 14 days in a quarantine facility in Singapore. Actually I'm still in the facility as I'm writing this. I still have about 1.5 hours before ~~I'm released~~ I check out. Here's a brief recount of my experience, which was pretty good, all things considered.
+I spent 14 days at a quarantine facility in Singapore. Actually I'm still in the facility as I'm writing this. I still have about 1.5 hours before ~~I'm released~~ I check out. Here's a brief recount of my experience, which was pretty good, all things considered.
 
 ### Context
 
@@ -41,7 +41,7 @@ The food was in general pretty good, aside from being room temperature. I had a 
 
 ### Costs
 
-Each swab test costs S$160, and the hotel stay costs S$2000, inclusive of three meal a day but excludes laundry. Laundry is S$35 for 5 pieces of clothing which is exorbitant. I handwashed my clothes.
+The first swab test cost S$160, the second one cost S$125, and the hotel stay costs S$2000, inclusive of three meal a day but excludes laundry. Laundry is S$35 for 5 pieces of clothing which is exorbitant. I handwashed my clothes.
 
 ### Wrap-up
 
