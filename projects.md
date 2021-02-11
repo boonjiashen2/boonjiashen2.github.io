@@ -18,8 +18,6 @@ permalink: /projects/
   {{ project.title }} {#{{ project.title | slugify }}}
 ===
 
-   [[PDF]]({{ project.pdf }}) {% if project.github %}[[Github]]({{ project.github }}){% endif %}
-
   __Submission date__\\
   {{ project.date | date_to_string }}
 
@@ -34,5 +32,9 @@ permalink: /projects/
   __Abstract__
 
   {{ project.content }}
+
+  __Links__:
+   {% if project.pdf %}[<i class="fas fa-file-pdf"></i>]({{ project.pdf }}){% endif %}
+   {% if project.github %}[<i class="fab fa-github"></i>]({{ project.github }}){% endif %}
 
 {% endfor %}
