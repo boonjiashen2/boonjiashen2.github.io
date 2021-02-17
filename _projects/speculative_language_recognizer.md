@@ -1,6 +1,6 @@
 ---
 title: "Distributed Representation of Sentences for Speculative Language Recognition in Biomedical Articles"
-pdf: https://s3.amazonaws.com/jiashen.me/Distributed_Representation_of_Sentences_for_Speculative_Language_Recognition_in_Biomedical_Articles.pdf
+pdf: Distributed_Representation_of_Sentences_for_Speculative_Language_Recognition_in_Biomedical_Articles.pdf
 date: "Dec 18, 2014"
 authors:
   - Jia-Shen Boon

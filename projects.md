@@ -34,7 +34,7 @@ permalink: /projects/
   {{ project.content }}
 
   __Links__:
-   {% if project.pdf %}[<i class="fas fa-file-pdf"></i>]({{ project.pdf }}){% endif %}
+   {% if project.pdf %}[<i class="fas fa-file-pdf"></i>](https://s3.amazonaws.com/boonjiashen.com/{{ project.pdf }}){% endif %}
    {% if project.github %}[<i class="fab fa-github"></i>]({{ project.github }}){% endif %}
 
 {% endfor %}

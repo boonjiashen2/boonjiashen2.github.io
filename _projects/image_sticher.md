@@ -1,6 +1,6 @@
 ---
 title: "CUDA-accelerated feature matching for image stitching"
-pdf: https://s3.amazonaws.com/jiashen.me/CUDA-accelerated_feature_matching_for_image_stitching.pdf
+pdf: CUDA-accelerated_feature_matching_for_image_stitching.pdf
 date: "Dec 21, 2015"
 github: https://github.com/boonjiashen/stitching_with_cuda
 type: "CS759 High Performance Computing course project"

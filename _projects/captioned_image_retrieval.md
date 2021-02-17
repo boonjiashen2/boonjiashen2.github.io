@@ -1,6 +1,6 @@
 ---
 title: "Robust image retrieval using topic modeling on captioned image data"
-pdf: https://s3.amazonaws.com/jiashen.me/Robust_image_retrieval_using_topic_modeling_on_captioned_image_data.pdf
+pdf: Robust_image_retrieval_using_topic_modeling_on_captioned_image_data.pdf
 date: "Jun 8, 2015"
 type: "CS766 Computer Vision course project"
 github: https://github.com/msyamkumar/captioned_image_retrieval_CS766_final
