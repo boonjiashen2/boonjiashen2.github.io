@@ -28,3 +28,8 @@ You'll probably want to install some additional package to get the bundle instal
  ```
  sudo apt-get install -y ruby-bundler ruby-dev ruby make gcc build-essential patch ruby-dev zlib1g-dev liblzma-dev
  ```
+
+## Domain configuration
+
+* To configure `example.com` to redirect to `blog.example.com`, follow [this AWS support post](https://aws.amazon.com/premiumsupport/knowledge-center/redirect-domain-route-53/). Basically you create an S3 bucket of the same name as your bucket, and check "Redirect requests for an object", redirecting to `blog.example.com`.
+* To configure `blog.example.com` as an alias to the Github Pages site, follow [this GitHub post](https://docs.github.com/en/articles/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain). Basically create a CNAME record that points to the Github Pages URL, and enable HTTPS.
