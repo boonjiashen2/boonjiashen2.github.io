@@ -9,3 +9,4 @@ group :development do
     gem 'guard-livereload'
   # gem 'guard-livereload', '~> 2.5', require: false
 end
+gem "webrick", "~> 1.7"
