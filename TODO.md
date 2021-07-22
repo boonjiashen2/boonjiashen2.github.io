@@ -1,3 +1,5 @@
-* Move photomosaick app from Heroku into AWS
 * Update resume to include time in Tokyo
-* Update home link in chou.jinja to direct to boonjiashen.com rather than jiashen.me
+* Add tags to projects and display them on project page
+* Migrate mathjax https://www.mathjax.org/cdn-shutting-down/
+* Figure out how to get notified of JS warnings
+* Refactor webapp projects to _projects files to reduce code duplication

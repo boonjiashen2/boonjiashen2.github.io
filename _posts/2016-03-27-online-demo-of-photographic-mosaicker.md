@@ -31,6 +31,7 @@ author:
 
 Recently I've been playing around with web development and it's been a lot of fun! Most of my work has been algorithmic development that's more or less silo-ed off to a corner of the world, but it seems to make sense from a societal perspective for the benefits of one's work to be shared as widely as possible, e.g., through the web.
 
-To that end, I ported the photographic mosaicker (detailed in my previous post) over to Python and deployed it on a Heroku app. You can try mosaicking your own pictures [here](https://photomosaick.herokuapp.com/)!
+To that end, I ported the photographic mosaicker (detailed in my previous post) over to Python and deployed it on a Heroku app. ~~You can try mosaicking your own pictures [here](https://photomosaick.herokuapp.com/)!~~\\
+[Edit on July 22, 2021] I've migrated the app off Heroku on to AWS. The new link is [here](https://mosaic.boonjiashen.com).
 
 Source code can be found on Github [[link](https://github.com/boonjiashen/heroku_simple_image_processing)].
