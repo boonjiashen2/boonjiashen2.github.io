@@ -14,7 +14,8 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.boonjiashen.com" # the base hostname & protocol for your site
 # twitter_username: jekyllrb
 linkedin_username: boonjiashen
-github_username:  boonjiashen
+github_username: boonjiashen
+base_s3_path: https://s3.ap-northeast-1.amazonaws.com/boonjiashen.com/
 
 # Build settings
 markdown: kramdown

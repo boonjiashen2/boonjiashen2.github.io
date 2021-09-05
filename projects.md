@@ -67,7 +67,7 @@ __Links__:
   {{ project.content }}
 
   __Links__:
-   {% if project.pdf %}[<i class="fas fa-file-pdf"></i>](https://s3.ap-northeast-1.amazonaws.com/boonjiashen.com/{{ project.pdf }}){% endif %}
+   {% if project.pdf %}[<i class="fas fa-file-pdf"></i>]({{ site.base_s3_path }}{{ project.pdf }}){% endif %}
    {% if project.github %}[<i class="fab fa-github"></i>]({{ project.github }}){% endif %}
 
 {% endfor %}
