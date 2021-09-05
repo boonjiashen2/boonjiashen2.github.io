@@ -37,8 +37,8 @@ __Description__
 This was an experiment in exposing image processing algorithms to the web.
 
 __Links__:
-[<i class="fas fa-globe"></i>](https://mosaic.boonjiashen.com)
 [<i class="fab fa-github"></i>](https://github.com/boonjiashen/heroku_simple_image_processing)
+[<i class="fab fa-github"></i>](https://github.com/boonjiashen/photomosaic-infra)
 [[post 1](/2016/03/27/online-demo-of-photographic-mosaicker/)]
 [[post 2](/2016/01/18/how-to-write-a-simple-photographic-mosaicker/)]
 

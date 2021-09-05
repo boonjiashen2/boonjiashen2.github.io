@@ -21,17 +21,14 @@ meta:
   _wp_old_slug: '180'
   geo_public: '0'
   _publicize_job_id: '23348661959'
-author:
-  login: boonjiashen
-  email: jiashen@gmail.com
-  display_name: jiashen
-  first_name: ''
-  last_name: ''
 ---
 
 Recently I've been playing around with web development and it's been a lot of fun! Most of my work has been algorithmic development that's more or less silo-ed off to a corner of the world, but it seems to make sense from a societal perspective for the benefits of one's work to be shared as widely as possible, e.g., through the web.
 
-To that end, I ported the photographic mosaicker (detailed in my previous post) over to Python and deployed it on a Heroku app. ~~You can try mosaicking your own pictures [here](https://photomosaick.herokuapp.com/)!~~\\
-[Edit on July 22, 2021] I've migrated the app off Heroku on to AWS. The new link is [here](https://mosaic.boonjiashen.com).
+To that end, I ported the photographic mosaicker (detailed in my previous post) over to Python and deployed it on a Heroku app.
+
+[Edit on Sept 6, 2021] Find links in <a class="page-link" href="/projects/">Projects page.</a>\\
+~~[Edit on July 22, 2021] I've migrated the app off Heroku on to AWS. The new link is [here](https://mosaic.boonjiashen.com).~~\\
+~~You can try mosaicking your own picture [here](https://photomosaick.herokuapp.com/)!~~
 
 Source code can be found on Github [[link](https://github.com/boonjiashen/heroku_simple_image_processing)].
