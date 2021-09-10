@@ -5,7 +5,7 @@ __TODO__
 * Migrate mathjax https://www.mathjax.org/cdn-shutting-down/
 * Figure out how to get notified of JS warnings
 * Refactor webapp projects to _projects files to reduce code duplication
-* Update S3 paths to not include region
+* Update S3 paths to not include region. Probably need to create a blog.boonjiashen.com bucket and put assets there, since boonjiashen.com redirects to blog.boonjiashen.com
 
 __Some day/maybe__
 
